@@ -59,7 +59,7 @@
                                         @foreach ($subjects as $subject)
 
                                             @if(Auth::check())
-                                                <a href="{{ url('public/'.$subject->pdf_path) }}" target="_blank">View PDF</a>
+                                                <a href="{{ url($subject->pdf_path) }}" target="_blank">View PDF</a>
                                             @else
                                                 <a href="javascript:void(0);" class="text-danger" data-bs-toggle="modal" data-bs-target="#loginModal">
                                                     Login to view PDF

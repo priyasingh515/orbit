@@ -14,22 +14,22 @@
     <title>@yield('title')</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{asset('./public/assets/admin/img/logo.png')}}" />
-    <link rel="apple-touch-icon" href="{{asset('./public/assets/admin/img/logo.png')}}" />
-    <link rel="apple-touch-icon" sizes="72x72" href="{{asset('./public/assets/admin/img/logo.png')}}" />
-    <link rel="apple-touch-icon" sizes="114x114" href="{{asset('./public/assets/admin/img/logo.png')}}" />
+    <link rel="shortcut icon" href="{{asset('./assets/admin/img/logo.png')}}" />
+    <link rel="apple-touch-icon" href="{{asset('./assets/admin/img/logo.png')}}" />
+    <link rel="apple-touch-icon" sizes="72x72" href="{{asset('./assets/admin/img/logo.png')}}" />
+    <link rel="apple-touch-icon" sizes="114x114" href="{{asset('./assets/admin/img/logo.png')}}" />
 
     <!-- plugins -->
-    <link rel="stylesheet" href="{{asset('public/assets/front/css/plugins.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/front/css/plugins.css')}}" />
 
     <!-- search css -->
-    <link rel="stylesheet" href="{{asset('public/assets/front/search/search.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/front/search/search.css')}}" />
 
     <!-- quform css -->
-    <link rel="stylesheet" href="{{asset('public/assets/front/quform/css/base.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/front/quform/css/base.css')}}">
 
     <!-- core style css -->
-    <link href="{{asset('public/assets/front/css/styles.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/front/css/styles.css')}}" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -94,7 +94,7 @@
                                 <nav class="navbar navbar-expand-lg navbar-light p-0">
                                     <div class="navbar-header navbar-header-custom">
                                         <!-- start logo -->
-                                        <a href="/" class="navbar-brand"><img id="logo" src="{{asset('./public/assets/admin/img/logo.png')}}" alt="logo" /></a>
+                                        <a href="/" class="navbar-brand"><img id="logo" src="{{asset('./assets/admin/img/logo.png')}}" alt="logo" /></a>
                                         <!-- end logo -->
                                     </div>
 
@@ -126,7 +126,7 @@
                 <div class="owl-theme w-100">
                     <div class="item bg-img cover-background pt-6 pb-10 pt-sm-6 pb-sm-14 py-md-16 py-lg-20 py-xxl-24 left-overlay-dark" 
                         data-overlay-dark="8" 
-                        data-background="{{url('public/'.$settingsData->banner)}}">
+                        data-background="{{url($settingsData->banner)}}">
                         
                         <div class="container pt-6 pt-md-0 text-center">
                             <div class="row justify-content-center">
@@ -185,28 +185,28 @@
     <!-- end scroll to top -->
 
     <!-- jQuery -->
-    <script src="{{asset('public/assets/front/js/jquery.min.js')}}"></script>
+    <script src="{{asset('assets/front/js/jquery.min.js')}}"></script>
 
     <!-- popper js -->
-    <script src="{{asset('public/assets/front/js/popper.min.js')}}"></script>
+    <script src="{{asset('assets/front/js/popper.min.js')}}"></script>
 
     <!-- bootstrap -->
-    <script src="{{asset('public/assets/front/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/front/js/bootstrap.min.js')}}"></script>
 
     <!-- core.min.js -->
-    <script src="{{asset('public/assets/front/js/core.min.js')}}"></script>
+    <script src="{{asset('assets/front/js/core.min.js')}}"></script>
 
     <!-- search -->
-    <script src="{{asset('public/assets/front/search/search.js')}}"></script>
+    <script src="{{asset('assets/front/search/search.js')}}"></script>
 
     <!-- custom scripts -->
-    <script src="{{asset('public/assets/front/js/main.js')}}"></script>
+    <script src="{{asset('assets/front/js/main.js')}}"></script>
 
     <!-- form plugins js -->
-    <script src="{{asset('public/assets/front/quform/js/plugins.js')}}"></script>
+    <script src="{{asset('assets/front/quform/js/plugins.js')}}"></script>
 
     <!-- form scripts js -->
-    <script src="{{asset('public/assets/front/quform/js/scripts.js')}}"></script>
+    <script src="{{asset('assets/front/quform/js/scripts.js')}}"></script>
 
     <!-- all js include end -->
 

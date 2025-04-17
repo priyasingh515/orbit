@@ -14,22 +14,22 @@
     <title>@yield('title')</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{asset('./public/assets/admin/img/logo.png')}}" />
-    <link rel="apple-touch-icon" href="{{asset('./public/assets/admin/img/logo.png')}}" />
-    <link rel="apple-touch-icon" sizes="72x72" href="{{asset('./public/assets/admin/img/logo.png')}}" />
-    <link rel="apple-touch-icon" sizes="114x114" href="{{asset('./public/assets/admin/img/logo.png')}}" />
+    <link rel="shortcut icon" href="{{asset('./assets/admin/img/logo.png')}}" />
+    <link rel="apple-touch-icon" href="{{asset('./assets/admin/img/logo.png')}}" />
+    <link rel="apple-touch-icon" sizes="72x72" href="{{asset('./assets/admin/img/logo.png')}}" />
+    <link rel="apple-touch-icon" sizes="114x114" href="{{asset('./assets/admin/img/logo.png')}}" />
 
     <!-- plugins -->
-    <link rel="stylesheet" href="{{asset('/public/assets/front/css/plugins.css')}}" />
+    <link rel="stylesheet" href="{{asset('/assets/front/css/plugins.css')}}" />
 
     <!-- search css -->
-    <link rel="stylesheet" href="{{asset('/public/assets/front/search/search.css')}}" />
+    <link rel="stylesheet" href="{{asset('/assets/front/search/search.css')}}" />
 
     <!-- quform css -->
-    <link rel="stylesheet" href="{{asset('/public/assets/front/quform/css/base.css')}}">
+    <link rel="stylesheet" href="{{asset('/assets/front/quform/css/base.css')}}">
 
     <!-- core style css -->
-    <link href="{{asset('/public/assets/front/css/styles.css')}}" rel="stylesheet" />
+    <link href="{{asset('/assets/front/css/styles.css')}}" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -463,7 +463,7 @@
                                     <div class="navbar-header navbar-header-custom">
                                         <!-- start logo -->
                                         <a href="/" class="navbar-brand"><img id="logo" src="
-                                            {{asset('./public/assets/admin/img/logo.png')}}
+                                            {{asset('./assets/admin/img/logo.png')}}
                                             " alt="logo"/></a>
                                         <!-- end logo -->
                                     </div>
@@ -614,7 +614,7 @@
                         <div class="marquee-wrapper" style="display: flex; align-items: center; height: 100%;">
                             <marquee behavior="scroll" direction="left" scrollamount="5" style="width: 100%; display: flex; align-items: center;">
                                 <div style="display: flex; align-items: center;">
-                                    <img src="{{ asset('/public/assets/front/img/logos/of.svg') }}" alt="offer" style="height: 30px; margin-right: 10px;">
+                                    <img src="{{ asset('/assets/front/img/logos/of.svg') }}" alt="offer" style="height: 30px; margin-right: 10px;">
                                     <h4 style="color: #2c316f; font-size: 16px; white-space: nowrap;">
                                         {{ $offers->description }}
                                     </h4>
@@ -630,7 +630,7 @@
                 <div class="modal-content custom-modal-content">
 
                     <div class="modal-header">
-                        <img src="{{ asset('./public/assets/admin/img/logo.png') }}" alt="Logo" height="50" width="50">
+                        <img src="{{ asset('./assets/admin/img/logo.png') }}" alt="Logo" height="50" width="50">
                         <button type="button" class="btn position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close">
                             <i class="fa-solid fa-xmark" style="color: #ff7029; font-size: 1.2rem;"></i>
                         </button>
@@ -640,7 +640,7 @@
 
                         <!-- Google Login Button -->
                         <button id="loginBtn" class="btn w-100 d-flex align-items-center justify-content-center py-2 loginb">
-                            <img src="{{ asset('/public/assets/front/img/logos/google.png') }}" 
+                            <img src="{{ asset('/assets/front/img/logos/google.png') }}" 
                                 alt="Google Logo" width="20" class="me-2">
                             Login with Google
                         </button>

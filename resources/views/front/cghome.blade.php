@@ -16,22 +16,22 @@
     <title>@yield('title')</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{asset('./public/assets/admin/img/logo.png')}}" />
-    <link rel="apple-touch-icon" href="{{asset('./public/assets/admin/img/logo.png')}}" />
-    <link rel="apple-touch-icon" sizes="72x72" href="{{asset('./public/assets/admin/img/logo.png')}}" />
-    <link rel="apple-touch-icon" sizes="114x114" href="{{asset('./public/assets/admin/img/logo.png')}}" />
+    <link rel="shortcut icon" href="{{asset('./assets/admin/img/logo.png')}}" />
+    <link rel="apple-touch-icon" href="{{asset('./assets/admin/img/logo.png')}}" />
+    <link rel="apple-touch-icon" sizes="72x72" href="{{asset('./assets/admin/img/logo.png')}}" />
+    <link rel="apple-touch-icon" sizes="114x114" href="{{asset('./assets/admin/img/logo.png')}}" />
 
     <!-- plugins -->
-    <link rel="stylesheet" href="{{asset('/public/assets/front/css/plugins.css')}}" />
+    <link rel="stylesheet" href="{{asset('/assets/front/css/plugins.css')}}" />
 
     <!-- search css -->
-    <link rel="stylesheet" href="{{asset('/public/assets/front/search/search.css')}}" />
+    <link rel="stylesheet" href="{{asset('/assets/front/search/search.css')}}" />
 
     <!-- quform css -->
-    <link rel="stylesheet" href="{{asset('/public/assets/front/quform/css/base.css')}}">
+    <link rel="stylesheet" href="{{asset('/assets/front/quform/css/base.css')}}">
 
     <!-- core style css -->
-    <link href="{{asset('/public/assets/front/css/styles.css')}}" rel="stylesheet" />
+    <link href="{{asset('/assets/front/css/styles.css')}}" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
@@ -670,7 +670,7 @@
                                     <div class="navbar-header navbar-header-custom">
                                         <!-- start logo -->
                                         <a href="/" class="navbar-brand"><img id="logo" src="
-                                            {{asset('./public/assets/admin/img/logo.png')}}
+                                            {{asset('./assets/admin/img/logo.png')}}
                                             " alt="logo"/></a>
                                         <!-- end logo -->
                                     </div>
@@ -829,7 +829,7 @@
                         <div class="marquee-wrapper" style="display: flex; align-items: center; height: 100%;">
                             <marquee behavior="scroll" direction="left" scrollamount="5" style="width: 100%; display: flex; align-items: center;">
                                 <div style="display: flex; align-items: center;">
-                                    <img src="{{ asset('/public/assets/front/img/logos/of.svg') }}" alt="offer" style="height: 30px; margin-right: 10px;">
+                                    <img src="{{ asset('/assets/front/img/logos/of.svg') }}" alt="offer" style="height: 30px; margin-right: 10px;">
                                     <h4 style="color: #2c316f; font-size: 16px; white-space: nowrap;">
                                         {{ $offers->description }}
                                     </h4>
@@ -845,7 +845,7 @@
                 <div class="modal-content custom-modal-content">
 
                     <div class="modal-header">
-                        <img src="{{ asset('./public/assets/admin/img/logo.png') }}" alt="Logo" height="50" width="50">
+                        <img src="{{ asset('./assets/admin/img/logo.png') }}" alt="Logo" height="50" width="50">
                         <button type="button" class="btn position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close">
                             <i class="fa-solid fa-xmark" style="color: #ff7029; font-size: 1.2rem;"></i>
                         </button>
@@ -855,7 +855,7 @@
 
                         <!-- Google Login Button -->
                         <button id="loginBtn" class="btn w-100 d-flex align-items-center justify-content-center py-2 loginb">
-                            <img src="{{ asset('/public/assets/front/img/logos/google.png') }}" 
+                            <img src="{{ asset('/assets/front/img/logos/google.png') }}" 
                                 alt="Google Logo" width="20" class="me-2">
                             Login with Google
                         </button>
@@ -946,7 +946,7 @@
             <div class="slider-fade1 owl-carousel owl-theme w-100">
                 @foreach ($slider as $sliders)
                     <div class="item bg-img  pt-6 pb-10 pt-sm-6 pb-sm-14 py-md-16 py-lg-20 py-xxl-24 left-overlay-dark"
-                        data-overlay-dark="8" style="background-image: url('{{ url('/public/admin/sliders/', $sliders->image) }}');">
+                        data-overlay-dark="8" style="background-image: url('{{ url('/admin/sliders/', $sliders->image) }}');">
                         <div class="container pt-6 pt-md-0">
                             <div class="row align-items-center">
                                 <div class="col-md-10 col-lg-8 col-xl-7 mb-1-9 mb-lg-0 py-6 position-relative">
@@ -1035,7 +1035,7 @@
                 @if(count($Guides) > 0)
                     @foreach ($Guides as $guide)
                         <div class="team-member">
-                            <img src="{{ asset('public/admin/guide/'.$guide->photos) }}" alt="{{ $guide->name }}">
+                            <img src="{{ asset('/admin/guide/'.$guide->photos) }}" alt="{{ $guide->name }}">
                             <h3 style="color: rgba(9, 67, 109, 0.87)">{{ $guide->rank }}</h3>
                             <h6 style="color: black">{{ strtoupper($guide->name) }}</h6>
                             <p style="color: black; margin-top:-5px;font-size:10px">{{ $guide->post }}</p>
@@ -1062,9 +1062,9 @@
                 @foreach ( $samples as $sample)
                     <div class="col-6 col-lg-4 col-xl-3 mt-1-9">
                         <div class="category-item-01 shadow" style="height:140px">
-                            <a href="{{ url('public/admin/sample/'.$sample->sample_file) }}" class="d-block text-decoration-none" target="_blank">
+                            <a href="{{ url('/admin/sample/'.$sample->sample_file) }}" class="d-block text-decoration-none" target="_blank">
                                 <div class="category-img text-center">
-                                    <img src="{{asset('public/assets/front/img/logos/pd.png')}}" alt="PDF Icon" height="50" width="50">
+                                    <img src="{{asset('assets/front/img/logos/pd.png')}}" alt="PDF Icon" height="50" width="50">
                                 </div>
                                 <div class="ms-3 text-center">
                                     <h2 class="h6 mb-0 evaluate"style="font-size: 14px;">{{ $sample->name }}</h2>
@@ -1177,9 +1177,9 @@
                 @foreach ( $questionpapers as $question)
                     <div class="col-6 col-lg-4 col-xl-3 mt-1-9">
                         <div class="category-item-01" style="height: 140px">
-                            <a href="{{ url('public/'.$question->pdf_path) }}" class="d-block text-decoration-none" target="_blank">
+                            <a href="{{ url($question->pdf_path) }}" class="d-block text-decoration-none" target="_blank">
                                 <div class="category-img text-center">
-                                    <img src="{{asset('public/assets/front/img/logos/pd.png')}}" alt="PDF Icon" height="50" width="50">
+                                    <img src="{{asset('assets/front/img/logos/pd.png')}}" alt="PDF Icon" height="50" width="50">
                                 </div>
                                 <div class="ms-3 text-center">
                                     <h3 class="h5 mb-0 evaluate"style="font-size: 14px;">{{ $question->paper_name }}</h3>
@@ -1306,11 +1306,11 @@
         <div class="row justify-content-center mb-5">
             <div class="d-flex justify-content-center gap-4 flex-wrap">
                 <div class="d-flex flex-column align-items-center">
-                    <img src="{{ asset('/public/assets/front/img/logos/whatsapp.png') }}" alt="WhatsApp" height="70" width="70">
+                    <img src="{{ asset('/assets/front/img/logos/whatsapp.png') }}" alt="WhatsApp" height="70" width="70">
                     {{-- <span class="mt-2 fw-semibold">WhatsApp</span> --}}
                 </div>
                 <div class="d-flex flex-column align-items-center">
-                    <img src="{{ asset('/public/assets/front/img/logos/youtybe.png') }}" alt="YouTube" height="80" width="80">
+                    <img src="{{ asset('/assets/front/img/logos/youtybe.png') }}" alt="YouTube" height="80" width="80">
                     {{-- <span class="mt-2 fw-semibold">YouTube</span> --}}
                 </div>
             </div>
@@ -1322,7 +1322,7 @@
             <div class="row">
                 <div class="col-md-6 col-lg-3 mb-2-5 mb-lg-0">
                     <a href="/" class="footer-logo">
-                        <img src="{{asset('/public/assets/admin/img/logo.png')}}" height="50" width="50" class="mb-4" alt="Footer Logo">
+                        <img src="{{asset('/assets/admin/img/logo.png')}}" height="50" width="50" class="mb-4" alt="Footer Logo">
                     </a>
                     <p class="mb-1-6 text-white">
                         It's an ideal opportunity to begin investing your energy such that illuminates you.
@@ -1441,21 +1441,21 @@
                             <li>
                                 <a href="mailto:your-{{$settingsData->email}}" target="_blank">
                                     <i class="fas fa-envelope"></i>
-                                    {{-- <img src="{{ asset('/public/assets/front/img/logos/gmail.png') }}" height="40" width="40" alt="Email"> --}}
+                                    {{-- <img src="{{ asset('/assets/front/img/logos/gmail.png') }}" height="40" width="40" alt="Email"> --}}
     
                                 </a>
                             </li>
                             <li>
                                 <a href="https://t.me/mppscmainsorbit"  target="_blank">
                                     <i class="fab fa-telegram"></i>
-                                    {{-- <img src="{{ asset('/public/assets/front/img/logos/telegram.png') }}" height="40" width="40" alt="Telegram"> --}}
+                                    {{-- <img src="{{ asset('/assets/front/img/logos/telegram.png') }}" height="40" width="40" alt="Telegram"> --}}
     
                                 </a>
                             </li>
                             <li>
                                 <a href="https://wa.me/{{$settingsData->whatsapp}}"  target="_blank">
                                     <i class="fab fa-whatsapp"></i>
-                                    {{-- <img src="{{ asset('/public/assets/front/img/logos/whatsapp.png') }}" alt="WhatsApp" height="40" width="40"> --}}
+                                    {{-- <img src="{{ asset('/assets/front/img/logos/whatsapp.png') }}" alt="WhatsApp" height="40" width="40"> --}}
     
                                 </a>
     
@@ -1463,14 +1463,14 @@
                             <li>
                                 <a href="tel:+{{$settingsData->mobile}}">
                                     <i class="fas fa-phone"></i>
-                                    {{-- <img src="{{ asset('/public/assets/front/img/logos/telephone.png') }}" height="40" width="40" alt="Phone"> --}}
+                                    {{-- <img src="{{ asset('/assets/front/img/logos/telephone.png') }}" height="40" width="40" alt="Phone"> --}}
     
                                 </a>
                             </li>
                             <li>
                                 <a href="https://youtube.com/@mainsorbit?si=QjqS52vouecH6d0Q"  target="_blank">
                                     <i class="fab fa-youtube"></i>
-                                    {{-- <img src="{{ asset('/public/assets/front/img/logos/youtybe.png') }}" height="40" width="40" alt="YouTube"> --}}
+                                    {{-- <img src="{{ asset('/assets/front/img/logos/youtybe.png') }}" height="40" width="40" alt="YouTube"> --}}
     
                                 </a>
                             </li>
@@ -1489,7 +1489,7 @@
 
 <div class="buy-theme alt-font d-block">
     <a href="https://t.me/mppscmainsorbit" target="_blank">
-        <img src="{{ asset('public/assets/front/img/logos/telegram.png') }}" alt="" height="50" width="50">
+        <img src="{{ asset('assets/front/img/logos/telegram.png') }}" alt="" height="50" width="50">
         <span>Join Telegram</span>
     </a>
 </div>
@@ -1500,28 +1500,28 @@
 <!-- end scroll to top -->
 
 <!-- jQuery -->
-<script src="{{asset('/public/assets/front/js/jquery.min.js')}}"></script>
+<script src="{{asset('/assets/front/js/jquery.min.js')}}"></script>
 
 <!-- popper js -->
-<script src="{{asset('/public/assets/front/js/popper.min.js')}}"></script>
+<script src="{{asset('/assets/front/js/popper.min.js')}}"></script>
 
 <!-- bootstrap -->
-<script src="{{asset('/public/assets/front/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('/assets/front/js/bootstrap.min.js')}}"></script>
 
 <!-- core.min.js -->
-<script src="{{asset('/public/assets/front/js/core.min.js')}}"></script>
+<script src="{{asset('/assets/front/js/core.min.js')}}"></script>
 
 <!-- search -->
-<script src="{{asset('/public/assets/front/search/search.js')}}"></script>
+<script src="{{asset('/assets/front/search/search.js')}}"></script>
 
 <!-- custom scripts -->
-<script src="{{asset('/public/assets/front/js/main.js')}}"></script>
+<script src="{{asset('/assets/front/js/main.js')}}"></script>
 
 <!-- form plugins js -->
-<script src="{{asset('/public/assets/front/quform/js/plugins.js')}}"></script>
+<script src="{{asset('/assets/front/quform/js/plugins.js')}}"></script>
 
 <!-- form scripts js -->
-<script src="{{asset('/public/assets/front/quform/js/scripts.js')}}"></script>
+<script src="{{asset('/assets/front/quform/js/scripts.js')}}"></script>
 
 <!-- all js include end -->
 

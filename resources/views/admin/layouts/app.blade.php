@@ -8,13 +8,13 @@
 		<!-- Google Font: Source Sans Pro -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 		<!-- Font Awesome -->
-		<link rel="stylesheet" href="{{asset('public/assets/admin/plugins/fontawesome-free/css/all.min.css')}}">
+		<link rel="stylesheet" href="{{asset('/assets/admin/plugins/fontawesome-free/css/all.min.css')}}">
 		<!-- Theme style -->
-		<link rel="stylesheet" href="{{asset('public/assets/admin/css/adminlte.min.css')}}">
+		<link rel="stylesheet" href="{{asset('/assets/admin/css/adminlte.min.css')}}">
 
-		<link rel="stylesheet" href="{{asset('public/assets/admin/plugins/dropzone/min/dropzone.min.css')}}">
+		<link rel="stylesheet" href="{{asset('/assets/admin/plugins/dropzone/min/dropzone.min.css')}}">
 
-		<link rel="stylesheet" href="{{asset('public/assets/admin/css/custom.css')}}">
+		<link rel="stylesheet" href="{{asset('/assets/admin/css/custom.css')}}">
 		<meta name="csrf-token" content="{{csrf_token()}}">
 	</head>
 	<body class="hold-transition sidebar-mini">
@@ -42,7 +42,7 @@
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link p-0 pr-3" data-toggle="dropdown" href="#">
-							<img src="{{asset('public/assets/admin/img/avatar5.png')}}" class='img-circle elevation-2' width="40" height="40" alt="">
+							<img src="{{asset('/assets/admin/img/avatar5.png')}}" class='img-circle elevation-2' width="40" height="40" alt="">
 						</a>
 						<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-3">
 							<h4 class="h4 mb-0"><strong>{{Auth::guard('admin')->user()->name}}</strong></h4>
@@ -84,15 +84,15 @@
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		<!-- ./wrapper -->
 		<!-- jQuery -->
-		<script src="{{asset('public/assets/admin/plugins/jquery/jquery.min.js')}}"></script>
+		<script src="{{asset('/assets/admin/plugins/jquery/jquery.min.js')}}"></script>
 		<!-- Bootstrap 4 -->
-		<script src="{{asset('public/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+		<script src="{{asset('/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 		<!-- AdminLTE App -->
-		<script src="{{asset('public/assets/admin/js/adminlte.min.js')}}"></script>
+		<script src="{{asset('/assets/admin/js/adminlte.min.js')}}"></script>
 		<!-- AdminLTE for demo purposes -->
-		<script src="{{asset('public/assets/admin/js/demo.js')}}"></script>
+		<script src="{{asset('/assets/admin/js/demo.js')}}"></script>
 
-		<script src="{{asset('public/assets/admin/plugins/dropzone/min/dropzone.min.js')}}"></script>
+		<script src="{{asset('/assets/admin/plugins/dropzone/min/dropzone.min.js')}}"></script>
 
 
 		

@@ -40,7 +40,7 @@
                             <td>{{$i++}}</td>
                             <td>
                                 <a href="{{ url('public/'.$student->answer_pdf) }}" target="_blank">
-                                    <img src="{{asset('public/assets/front/img/logos/pd.png')}}" alt="Answer Pdf" height="50" width="50">
+                                    <img src="{{asset('/assets/front/img/logos/pd.png')}}" alt="Answer Pdf" height="50" width="50">
                                 </a>
                             </td>
                             <td>{{ \Carbon\Carbon::parse($student->created_at)->format('d-M-Y') }}</td>
