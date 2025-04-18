@@ -48,25 +48,40 @@
                     
                     <div class="col-lg-6 mt-2-9">
                         <div class="contact-wrapper bg-light rounded position-relative h-100 px-4">
-                            @if(Auth::check() && Auth::user()->state == 'cg')
-                                <a href="{{ url('/cgplan') }}">
-                            @elseif(Auth::check() && Auth::user()->state == 'mp')
-                                <a href="{{ url('/ourplan') }}">
-                            @else
-                                <a href="{{ url('/plan') }}">
-                            @endif
+                    
+                            @php
+                                $link = '';
+                                if (auth()->check()) {
+                                    if (Auth::user()->state == 'cg') {
+                                        $link = url('cgplan');
+                                    } elseif (Auth::user()->state == 'mp') {
+                                        $link = url('ourplan');
+                                    }
+                                } elseif (Session::has('selected_state')) {
+                                    if (Session::get('selected_state') == 'cg') {
+                                        $link = url('cgplan');
+                                    } elseif (Session::get('selected_state') == 'mp') {
+                                        $link = url('ourplan');
+                                    }
+                                }
+                            @endphp
+                    
+                            <a href="{{ $link }}">
                                 <div class="mb-4">
                                     <i class="contact-icon ti-arrow-up"></i>
                                 </div>
                             </a>
+                    
                             <div>
                                 <h4>Upgrade Plan</h4>
                                 <ul class="list-unstyled p-0 m-0">
                                     <li>Better Experience—<br> Upgrade Your Plan</li>
                                 </ul>
                             </div>
+                    
                         </div>
                     </div>
+                    
                     
                 </div>
             </div>

@@ -955,8 +955,30 @@
                                     </h1>
                                     <span class="h5 text-secondary">{{ $sliders->paragraph }}</span>
                                     <a href="{{route('user.questionadd')}}" class="butn my-1 mx-1 but"><span class="label">Take Demo</span></a>
-                                    <a href="{{url('ourplan')}}" class="butn white my-1 but"><span class="label">Pick a Plan</span></a>
+                                    {{-- <a href="{{url('ourplan')}}" class="butn white my-1 but"><span class="label">Pick a Plan</span></a> --}}
+                                    @php
+                                        $planLink = '';
+                                        if (auth()->check()) {
+                                            if (Auth::user()->state == 'cg') {
+                                                $planLink = url('cgplan');
+                                            } elseif (Auth::user()->state == 'mp') {
+                                                $planLink = url('ourplan');
+                                            }
+                                        } elseif (Session::has('selected_state')) {
+                                            if (Session::get('selected_state') == 'cg') {
+                                                $planLink = url('cgplan');
+                                            } elseif (Session::get('selected_state') == 'mp') {
+                                                $planLink = url('ourplan');
+                                            }
+                                        }
+                                    @endphp
+
+                                    <a href="{{ $planLink }}" class="butn white my-1 but">
+                                        <span class="label">Pick a Plan</span>
+                                    </a>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -1306,15 +1328,18 @@
         <div class="row justify-content-center mb-5">
             <div class="d-flex justify-content-center gap-4 flex-wrap">
                 <div class="d-flex flex-column align-items-center">
-                    <img src="{{ asset('/assets/front/img/logos/whatsapp.png') }}" alt="WhatsApp" height="70" width="70">
-                    {{-- <span class="mt-2 fw-semibold">WhatsApp</span> --}}
+                    <a href="https://wa.me/{{$settingsData->whatsapp}}" target="_blank"> <!-- WhatsApp link -->
+                        <img src="{{ asset('/assets/front/img/logos/whatsapp.png') }}" alt="WhatsApp" height="70" width="70">
+                    </a>
                 </div>
                 <div class="d-flex flex-column align-items-center">
-                    <img src="{{ asset('/assets/front/img/logos/youtybe.png') }}" alt="YouTube" height="80" width="80">
-                    {{-- <span class="mt-2 fw-semibold">YouTube</span> --}}
+                    <a href="https://youtube.com/@mainsorbit?si=QjqS52vouecH6d0Q" target="_blank"> <!-- YouTube link -->
+                        <img src="{{ asset('/assets/front/img/logos/youtybe.png') }}" alt="YouTube" height="80" width="80">
+                    </a>
                 </div>
             </div>
         </div>
+        
     </section>
     
     <footer style="background: #313460">

@@ -183,28 +183,28 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- jQuery -->
-    <script src="{{asset('/public/assets/front/js/jquery.min.js')}}"></script>
+    <script src="{{asset('/assets/front/js/jquery.min.js')}}"></script>
 
     <!-- popper js -->
-    <script src="{{asset('/public/assets/front/js/popper.min.js')}}"></script>
+    <script src="{{asset('/assets/front/js/popper.min.js')}}"></script>
 
     <!-- bootstrap -->
-    <script src="{{asset('/public/assets/front/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('/assets/front/js/bootstrap.min.js')}}"></script>
 
     <!-- core.min.js -->
-    <script src="{{asset('/public/assets/front/js/core.min.js')}}"></script>
+    <script src="{{asset('/assets/front/js/core.min.js')}}"></script>
 
     <!-- search -->
-    <script src="{{asset('/public/assets/front/search/search.js')}}"></script>
+    <script src="{{asset('/assets/front/search/search.js')}}"></script>
 
     <!-- custom scripts -->
-    <script src="{{asset('/public/assets/front/js/main.js')}}"></script>
+    <script src="{{asset('/assets/front/js/main.js')}}"></script>
 
     <!-- form plugins js -->
-    <script src="{{asset('/public/assets/front/quform/js/plugins.js')}}"></script>
+    <script src="{{asset('/assets/front/quform/js/plugins.js')}}"></script>
 
     <!-- form scripts js -->
-    <script src="{{asset('/public/assets/front/quform/js/scripts.js')}}"></script>
+    <script src="{{asset('/assets/front/quform/js/scripts.js')}}"></script>
 
   
 <!-- jQuery (if not already included) -->

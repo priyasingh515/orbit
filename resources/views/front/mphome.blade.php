@@ -231,7 +231,27 @@
                                     </h1>
                                     <span class="h5 text-secondary">{{ $sliders->paragraph }}</span>
                                     <a href="{{route('user.questionadd')}}" class="butn my-1 mx-1 but"><span class="label">Take Demo</span></a>
-                                    <a href="{{url('ourplan')}}" class="butn white my-1 but"><span class="label">Pick a Plan</span></a>
+                                    {{-- <a href="{{url('ourplan')}}" class="butn white my-1 but"><span class="label">Pick a Plan</span></a> --}}
+                                    @php
+                                        $planLink = '';
+                                        if (auth()->check()) {
+                                            if (Auth::user()->state == 'cg') {
+                                                $planLink = url('cgplan');
+                                            } elseif (Auth::user()->state == 'mp') {
+                                                $planLink = url('ourplan');
+                                            }
+                                        } elseif (Session::has('selected_state')) {
+                                            if (Session::get('selected_state') == 'cg') {
+                                                $planLink = url('cgplan');
+                                            } elseif (Session::get('selected_state') == 'mp') {
+                                                $planLink = url('ourplan');
+                                            }
+                                        }
+                                    @endphp
+
+                                    <a href="{{ $planLink }}" class="butn white my-1 but">
+                                        <span class="label">Pick a Plan</span>
+                                    </a>
 
                                 </div>
                             </div>
