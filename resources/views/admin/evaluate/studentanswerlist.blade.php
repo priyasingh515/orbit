@@ -26,6 +26,7 @@
                             <th width="60">ID</th>
                             <th>Answer sheet</th>
                             <th>Assigned Date</th>
+                            <th>Checked Date</th>
                             <th>Plan</th>
                             <th>Email</th>
                             <th>Status</th>
@@ -44,6 +45,7 @@
                                 </a>
                             </td>
                             <td>{{ \Carbon\Carbon::parse($student->created_at)->format('d-M-Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($student->check_date)->format('d-M-Y') }}</td>
                             <td> {{$student->plan_name}}</td>
                             <td> {{$student->student_email}}</td>
                             <td>

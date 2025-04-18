@@ -123,16 +123,18 @@ class EvaluateController extends Controller
             ->join('answer_sheets', 'assigned_teacher.answersheet_id', '=', 'answer_sheets.id')
             ->join('users', 'answer_sheets.student_id', '=', 'users.id')
             ->Join('user_plans', 'users.id', '=', 'user_plans.user_id')
+            ->Join('checked_answer_sheets','assigned_teacher.answersheet_id','=','checked_answer_sheets.answer_sheet_id')
             ->Join('plans', 'user_plans.plan_id', '=', 'plans.id')
             ->where('assigned_teacher.teacher_id', auth()->id())
             ->where('user_plans.status', 'active')
             ->select(
-                'assigned_teacher.*', 
+                'assigned_teacher.*',
                 'answer_sheets.answer_pdf', 
                 'answer_sheets.status', 
                 'users.name as student_name', 
                 'users.email as student_email',
-                'plans.plan_name as plan_name'
+                'plans.plan_name as plan_name',
+                'checked_answer_sheets.created_at as check_date'
             )
             ->get();
         return view('admin.evaluate.studentanswerlist',compact('studentsList'));
@@ -199,7 +201,7 @@ class EvaluateController extends Controller
             ->Join('answer_sheets','checked_answer_sheets.answer_sheet_id','=','answer_sheets.id')
             ->Join('users','users.id','=','answer_sheets.student_id')
             ->where('teacher_id', $teacherId)
-            ->select('checked_answer_sheets.*','users.email as email','users.name as student_name','answer_sheets.status','answer_sheets.answer_pdf')
+            ->select('checked_answer_sheets.*','checked_answer_sheets.created_at as check_date','users.email as email','users.name as student_name','answer_sheets.status','answer_sheets.answer_pdf')
             ->get();
         return view('admin.evaluate.checked_list',compact('checkedStudents'));
     }

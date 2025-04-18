@@ -32,6 +32,7 @@
                             <th>Email</th>
                             <th>Submit answer</th>
                             <th>checked answer</th>
+                            <th>Checked Date</th>
                             <th>Remark</th>
                             <th>Status</th>
                             {{-- <th width="100">Action</th> --}}
@@ -56,7 +57,8 @@
                                 </a>
 
                             </td>
-                            {{-- <td>{{$evaluates->remark}}</td> --}}
+                            <td>{{ \Carbon\Carbon::parse($evaluates->check_date)->format('d-M-Y') }}</td>
+
                             <td>
                                 <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#remarkModal" data-message="{{ $evaluates->remark }}">

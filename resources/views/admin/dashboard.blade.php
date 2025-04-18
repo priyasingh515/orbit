@@ -95,7 +95,7 @@
                     <div class="small-box card">
                         <div class="inner">
                             <h3>{{$studentsList}}</h3>
-                            <p>Student List</p>
+                            <p> Assigned Answer</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
@@ -107,7 +107,7 @@
                     <div class="small-box card">
                         <div class="inner">
                             <h3>{{$checkedStudents}}</h3>
-                            <p>Evaluated List</p>
+                            <p>Evaluated Answer</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
@@ -119,7 +119,7 @@
                     <div class="small-box card">
                         <div class="inner">
                             <h3>{{$doubtsCount}}</h3>
-                            <p>Student Doubt</p>
+                            <p> Doubt Messages</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
