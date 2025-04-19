@@ -55,14 +55,18 @@ class StudentController extends Controller
         $student = DB::table('answer_sheets')
             ->join('users', 'answer_sheets.student_id', '=', 'users.id') 
             ->leftJoin('checked_answer_sheets', 'answer_sheets.id', '=', 'checked_answer_sheets.answer_sheet_id')
+            ->leftJoin('users as teacher', 'checked_answer_sheets.teacher_id', '=', 'teacher.id')
             ->where('answer_sheets.student_id', $id)
             ->select(
                 'answer_sheets.*', 'users.name', 'users.email','users.state',
                 'checked_answer_sheets.checked_file_path as check_file',
-                'checked_answer_sheets.created_at as checked_date'
+                'checked_answer_sheets.created_at as checked_date',
+                'teacher.name as evaluate_name'
             ) 
             ->orderBy('answer_sheets.id', 'desc') 
             ->get();
+
+            // dd($student);
 
         if (!$student) {
             return redirect()->back()->with('error', 'Student not found!');

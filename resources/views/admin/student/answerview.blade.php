@@ -25,11 +25,11 @@
                     <thead>
                         <tr>
                             <th width="60">ID</th>
-                            {{-- <th>Name</th> --}}
                             <th>submition Date</th>
                             <th>checked Date</th>
                             <th>Answer Pdf</th>
                             <th>checked Pdf</th>
+                            <th>Evaluator Name</th>
                             <th>Answer Status</th>
                             <th width="100">Action</th>
                         </tr>
@@ -61,6 +61,14 @@
                                 @else
                                     Not Available
                                 @endif
+                            </td>
+                            <td>
+                                @if($students->evaluate_name)
+                                  {{$students->evaluate_name}}
+                                @else
+                                    Not Available
+                                @endif
+                                
                             </td>
                             <td>
                                 <a href="javascript:void(0);" 

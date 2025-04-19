@@ -27,7 +27,7 @@
                     <thead>
                         <tr>
                             <th width="60">ID</th>
-                            <th>Username</th>
+                            {{-- <th>Username</th> --}}
                             <th>Email</th>
                             <th>Answer Sheet</th>
                             <th>Checked Sheet</th>
@@ -43,7 +43,7 @@
                         @foreach ($Message as $student)
                         <tr>
                             <td>{{$i++}}</td>
-                            <td>{{$student->student_name}}</td>
+                            {{-- <td>{{$student->student_name}}</td> --}}
                             <td>{{$student->student_email}}</td>
                             <td>
                                 <a href="{{ url('public/'.$student->answer_sheet) }}" target="_blank">

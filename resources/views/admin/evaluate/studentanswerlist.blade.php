@@ -6,7 +6,7 @@
     <div class="container-fluid my-2">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Evaluate</h1>
+                <h1>Assigned answer</h1>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
                             <th width="60">ID</th>
                             <th>Answer sheet</th>
                             <th>Assigned Date</th>
-                            <th>Checked Date</th>
+                            {{-- <th>Checked Date</th> --}}
                             <th>Plan</th>
                             <th>Email</th>
                             <th>Status</th>
@@ -45,7 +45,7 @@
                                 </a>
                             </td>
                             <td>{{ \Carbon\Carbon::parse($student->created_at)->format('d-M-Y') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($student->check_date)->format('d-M-Y') }}</td>
+                            {{-- <td>{{ \Carbon\Carbon::parse($student->check_date)->format('d-M-Y') }}</td> --}}
                             <td> {{$student->plan_name}}</td>
                             <td> {{$student->student_email}}</td>
                             <td>
