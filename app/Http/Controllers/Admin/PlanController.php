@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Plans;
-use DB;
+// use DB;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PlanStatusUpdated;
 
 class PlanController extends Controller
 {
@@ -33,6 +36,7 @@ class PlanController extends Controller
             'description_3' => 'nullable|string',
             'description_4' => 'nullable|string',
             'state' => 'required',
+            'daily_question_limit' => 'nullable',
         ]);
 
         Plans::create($request->all());
@@ -97,17 +101,47 @@ class PlanController extends Controller
         return view('admin.Plans.pending_plan',compact('pendingPlans'));
     }
 
+    // public function updateStatus(Request $request)
+    // {
+    //     $request->validate([
+    //         'plan_id' => 'required',
+    //         'status' => 'required',
+    //     ]);
+    //     DB::table('user_plans')->where('id', $request->plan_id)->update([
+    //         'status' => $request->status
+    //     ]);
+
+    //     return response()->json(['message' => 'Plan status updated successfully!']);
+    // }
+
+
     public function updateStatus(Request $request)
     {
         $request->validate([
             'plan_id' => 'required',
             'status' => 'required',
         ]);
+
+        // Get the user_plan row with user relation
+        $userPlan = DB::table('user_plans')
+            ->join('users', 'user_plans.user_id', '=', 'users.id')
+            ->select('user_plans.*', 'users.email', 'users.name')
+            ->where('user_plans.id', $request->plan_id)
+            ->first();
+
+        if (!$userPlan) {
+            return response()->json(['message' => 'User plan not found'], 404);
+        }
+
+        // Update status
         DB::table('user_plans')->where('id', $request->plan_id)->update([
             'status' => $request->status
         ]);
 
-        return response()->json(['message' => 'Plan status updated successfully!']);
+        // Send email to user
+        Mail::to($userPlan->email)->send(new PlanStatusUpdated($userPlan->name, $request->status));
+
+        return response()->json(['message' => 'Plan status updated and email sent successfully!']);
     }
 
     public function purchasePlan()

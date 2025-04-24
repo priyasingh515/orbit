@@ -566,6 +566,57 @@ class FrontController extends Controller
     }
 
 
+    // public function answerstore(Request $request)
+    // {
+    //     $user = Auth::user();
+
+    //     $request->validate([
+    //         'question_no' => 'required',
+    //         'paper_type_id' => 'required',
+    //         'answer_sheet' => 'required|mimes:pdf,jpg,png|max:10240',
+    //     ]);
+
+    //     $totalAnswers = AnswerSheet::where('student_id', $user->id)->count();
+
+    //     $activePlan = DB::table('user_plans')
+    //         ->where('user_id', $user->id)
+    //         ->where('status', 'active')
+    //         ->where('expiry_date', '>=', Carbon::now())
+    //         ->orderBy('expiry_date', 'desc')
+    //         ->first();
+
+    //     if (!$activePlan && $totalAnswers >= 2) {
+    //         return redirect()->back()->with(['error' => 'You can only upload 2 answers. Purchase a plan for unlimited uploads.']);
+    //     }
+
+    //     if ($request->hasFile('answer_sheet')) {
+    //         $file = $request->file('answer_sheet');
+    //         $destinationPath = public_path('user/answer');
+
+    //         if (!file_exists($destinationPath)) {
+    //             mkdir($destinationPath, 0777, true);
+    //         }
+
+    //         $fileName = time() . '_' . $file->getClientOriginalName();
+    //         $file->move($destinationPath, $fileName);
+
+    //         $answerSheet = new AnswerSheet();
+    //         $answerSheet->student_id = $user->id;
+    //         $answerSheet->answer_pdf = 'user/answer/' . $fileName;
+    //         $answerSheet->status = 'pending';
+    //         $answerSheet->question_no = $request->question_no;
+    //         $answerSheet->paper_type_id = $request->paper_type_id;
+    //         $answerSheet->save();
+
+    //         return redirect()->back()->with('success', 'Answer sheet uploaded successfully!');
+    //     }
+
+    //     // return response()->json(['error' => 'File upload failed!'], 400);
+    //     return redirect()->back()->with('error', 'File upload failed!');
+
+    // }
+
+
     public function answerstore(Request $request)
     {
         $user = Auth::user();
@@ -578,17 +629,85 @@ class FrontController extends Controller
 
         $totalAnswers = AnswerSheet::where('student_id', $user->id)->count();
 
-        $activePlan = DB::table('user_plans')
+        $activeePlan = DB::table('user_plans')
             ->where('user_id', $user->id)
             ->where('status', 'active')
             ->where('expiry_date', '>=', Carbon::now())
             ->orderBy('expiry_date', 'desc')
             ->first();
 
-        if (!$activePlan && $totalAnswers >= 2) {
+        if (!$activeePlan && $totalAnswers >= 2) {
             return redirect()->back()->with(['error' => 'You can only upload 2 answers. Purchase a plan for unlimited uploads.']);
         }
 
+        // Fetch paper type from master_paper_type table
+        $paperType = DB::table('master_paper_type')->where('id', $request->paper_type_id)->first();
+
+        if (!$paperType) {
+            return redirect()->back()->with('error', 'Invalid paper type.');
+        }
+
+        $questionType = strtolower($paperType->type); // Assuming 'type' column has values like 'gs' or 'essay'
+
+        // Fetch active plan
+        $activePlan = DB::table('user_plans')
+            ->join('plans', 'user_plans.plan_id', '=', 'plans.id')
+            ->where('user_plans.user_id', $user->id)
+            ->where('user_plans.status', 'active')
+            ->where('user_plans.expiry_date', '>=', Carbon::now())
+            ->orderBy('user_plans.expiry_date', 'desc')
+            ->select('plans.daily_question_limit')
+            ->first();
+
+        $dailyLimit = $activePlan ? $activePlan->daily_question_limit : 2;
+
+        // Define limits based on dailyLimit
+        $gsLimit = $essayLimit = null;
+        if ($dailyLimit == 0) {
+            $gsLimit = $essayLimit = null; // Unlimited
+        } elseif ($dailyLimit == 3) {
+            $gsLimit = 2;
+            $essayLimit = 1;
+        } elseif ($dailyLimit == 4) {
+            $gsLimit = 3;
+            $essayLimit = 1;
+        } elseif ($dailyLimit == 5) {
+            $gsLimit = 4;
+            $essayLimit = 1;
+        } else {
+            // Default limits
+            $gsLimit = 1;
+            $essayLimit = 1;
+        }
+
+        // Count today's uploads
+        $todayStart = Carbon::today();
+        $todayEnd = Carbon::now();
+
+        $gsUploads = DB::table('answer_sheets')
+            ->join('master_paper_type', 'answer_sheets.paper_type_id', '=', 'master_paper_type.id')
+            ->where('answer_sheets.student_id', $user->id)
+            ->where('master_paper_type.type', 'gs')
+            ->whereBetween('answer_sheets.created_at', [$todayStart, $todayEnd])
+            ->count();
+
+        $essayUploads = DB::table('answer_sheets')
+            ->join('master_paper_type', 'answer_sheets.paper_type_id', '=', 'master_paper_type.id')
+            ->where('answer_sheets.student_id', $user->id)
+            ->where('master_paper_type.type', 'essay')
+            ->whereBetween('answer_sheets.created_at', [$todayStart, $todayEnd])
+            ->count();
+
+        // Check limits
+        if ($questionType == 'gs' && $gsLimit !== null && $gsUploads >= $gsLimit) {
+            return redirect()->back()->with('error', "You can only upload {$gsLimit} GS answer(s) per day.");
+        }
+
+        if ($questionType == 'essay' && $essayLimit !== null && $essayUploads >= $essayLimit) {
+            return redirect()->back()->with('error', "You can only upload {$essayLimit} Essay answer(s) per day.");
+        }
+
+        // File upload logic
         if ($request->hasFile('answer_sheet')) {
             $file = $request->file('answer_sheet');
             $destinationPath = public_path('user/answer');
@@ -600,21 +719,22 @@ class FrontController extends Controller
             $fileName = time() . '_' . $file->getClientOriginalName();
             $file->move($destinationPath, $fileName);
 
-            $answerSheet = new AnswerSheet();
-            $answerSheet->student_id = $user->id;
-            $answerSheet->answer_pdf = 'user/answer/' . $fileName;
-            $answerSheet->status = 'pending';
-            $answerSheet->question_no = $request->question_no;
-            $answerSheet->paper_type_id = $request->paper_type_id;
-            $answerSheet->save();
+            DB::table('answer_sheets')->insert([
+                'student_id' => $user->id,
+                'answer_pdf' => 'user/answer/' . $fileName,
+                'status' => 'pending',
+                'question_no' => $request->question_no,
+                'paper_type_id' => $request->paper_type_id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
 
             return redirect()->back()->with('success', 'Answer sheet uploaded successfully!');
         }
 
-        // return response()->json(['error' => 'File upload failed!'], 400);
         return redirect()->back()->with('error', 'File upload failed!');
-
     }
+
 
     public function viewCheckedSheet($id)
     {

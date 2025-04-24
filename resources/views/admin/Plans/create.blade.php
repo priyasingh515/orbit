@@ -48,6 +48,12 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
+                                <label for="daily_question_limit">Daily Question Limit</label>
+                                <input type="number" name="daily_question_limit"  class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
                                 <label for="name">Medium</label>
                                 <input type="text" name="medium"  class="form-control" placeholder=" Hindi or English Medium" required>
                             </div>

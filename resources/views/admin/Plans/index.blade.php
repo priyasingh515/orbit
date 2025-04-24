@@ -46,6 +46,7 @@
                             <th width="60">ID</th>
                             <th>Plan Name</th>
                             <th>Plan Validity</th>
+                            <th>Per Day Limit</th>
                             <th>Medium</th>
                             <th>Price</th>
                             <th>Description 1</th>
@@ -63,6 +64,7 @@
                             <td>{{$i++}}</td>
                             <td>{{$plan->plan_name}}</td>
                             <td> {{$plan->plan_validity}}</td>
+                            <td> {{$plan->daily_question_limit}}</td>
                             <td> {{$plan->medium}}</td>
                             <td> {{$plan->price}}</td>
                             <td> {{$plan->description_1}}</td>
